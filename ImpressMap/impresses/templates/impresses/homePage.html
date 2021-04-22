@@ -13,7 +13,7 @@
     <br>
     <a href="{% url 'add' %}">Добавить впечатление</a>
     {% else %}
-
+    <a href="{% url 'social:begin' 'facebook' %}">Facebook</a>
     <a href="/login/vk-oauth2">vk</a>
     {% endif %}
 </body>
