@@ -6,12 +6,15 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-    <p>Привет {{user.first_name}}</p>
+    <p>Привет {{user.first_name}}<img src="{{ profile.avatar }}"/></p>
+
     {% for impress in impresses %}
         {{impress.info}}
+        <br>
     {% endfor %}
     <br>
     <a href="{% url 'add' %}">Добавить впечатление</a>
+
     {% else %}
     <a href="{% url 'social:begin' 'facebook' %}">Facebook</a>
     <a href="/login/vk-oauth2">vk</a>
