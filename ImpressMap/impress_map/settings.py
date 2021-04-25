@@ -40,9 +40,13 @@ INSTALLED_APPS = [
 
     'impresses',
     'social_django',
-    'bootstrap4',
+    'crispy_forms',
 ]
+STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, "static"),
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

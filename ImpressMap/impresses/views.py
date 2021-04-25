@@ -37,7 +37,3 @@ class CreateImpress(CreateView):
             pass
         self.object.save()
         return super().form_valid(form)
-
-
-def logout_view(request):
-    logout(request)

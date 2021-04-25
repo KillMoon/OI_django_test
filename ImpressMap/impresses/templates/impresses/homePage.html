@@ -1,25 +1,50 @@
-{% load bootstrap4 %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
     {% if user.is_authenticated %}
-    <p>Привет {{user.first_name}}<img src="{{ profile.avatar }}"/></p>
-    <a href="{% url 'logout' %}">Logout</a>
+        <ul class="nav nav-justified">
+            <li class="nav-item"><p>Привет {{user.first_name}}</p></li>
+            <li class="nav-item"><img src="{{ profile.avatar }}"/></li>
+            <li class="nav-item">
+                <a type="button" class="btn btn-primary" href="{% url 'logout' %}">Выйти</a>
+            </li>
+        </ul>
 
-    {% for impress in impresses %}
-        {{impress.info}}
-        {{impress.address}}
-        <br>
-    {% endfor %}
-    <br>
-    <a href="{% url 'add' %}">Добавить впечатление</a>
-
+        {% if impresses %}
+            <p class="text-decoration-none">Добро пожаловать, список ваших впечатлений:</p>
+            <div class="d-flex flex-wrap align-content-stretch">
+                {% for impress in impresses %}
+                    <div class="p-2">
+                        <ul class="list-group">
+                            <li class="list-group-item">{{impress.name}}</li>
+                            <li class="list-group-item">{{impress.date}}</li>
+                            <li class="list-group-item">{{impress.info}}</li>
+                            <a href="#!" class="list-group-item list-group-item-action list-group-item-success">{{impress.address}}</a>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+        {% else %}
+            <p class="text-decoration-none">У вас ещё нет ни одного впечатленния!</p>
+        {% endif %}
+    <span class="align-content-center"><a type="button" class="add_btn btn btn-primary align-content-center" href="{% url 'add' %}">Добавить впечатление</a></span>
     {% else %}
-    <a href="{% url 'social:begin' 'facebook' %}">Facebook</a>
-    <a href="/login/vk-oauth2">vk</a>
+        <div class="parent">
+            <p class="text-monospace">Добро пожаловать! Здесь вы можете добавить впечатления. </p>
+            <p class="text-monospace">Для этого вам нужно авторизоваться через одну из социальных сетей</p>
+            <div class="login_button">
+                <a type="button" class="btn btn-primary" href="{% url 'social:begin' 'facebook' %}">Facebook</a>
+                <a type="button" class="btn btn-primary" href="/login/vk-oauth2">VK</a>
+            </div>
+        </div>
     {% endif %}
 </body>
 </html>
