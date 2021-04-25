@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
@@ -36,3 +37,7 @@ class CreateImpress(CreateView):
             pass
         self.object.save()
         return super().form_valid(form)
+
+
+def logout_view(request):
+    logout(request)

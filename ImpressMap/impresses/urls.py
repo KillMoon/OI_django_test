@@ -1,8 +1,9 @@
 from django.urls import path
 
-from impresses.views import home_page, CreateImpress
+from impress_map import settings
+from impresses.views import home_page, CreateImpress, logout_view
 
 urlpatterns = [
     path('', home_page, name='homePage'),
-    path('add/', CreateImpress.as_view(), name='add')
+    path('add/', CreateImpress.as_view(), name='add'),
 ]

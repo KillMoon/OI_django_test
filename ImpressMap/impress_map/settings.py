@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'impresses',
     'social_django',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'impress_map.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'impresses_store',
+        'NAME': 'ImpressMap',
         'USER': 'postgres',
         'PASSWORD': '1',
         'HOST': 'localhost',
@@ -147,7 +148,6 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_FACEBOOK_KEY = '1667852386735591'
 SOCIAL_AUTH_FACEBOOK_SECRET = '8bada2c81981abafe8d8c5d3c2415d04'
 
-LOGIN_REDIRECT_URL = '/impresses'
 
 SOCIAL_AUTH_VK_APP_USER_MODE = 2
 
@@ -165,4 +165,26 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
     'impresses.pipeline.get_avatar', #Указываем путь, где лежит функция получения аватара.
+)
+
+INSTALLED_APPS += ("mapbox_location_field",)
+MAPBOX_KEY = "pk.eyJ1Ijoia2lsbG1vb25xIiwiYSI6ImNrbnZueWJjNjBvamEyd3JtODEweWxteGUifQ.wTaSGk7cIsOQlrXo75Hl4A"
+
+LOGIN_REDIRECT_URL = '/impresses'
+LOGOUT_REDIRECT_URL = '/impresses'
+
+SOCIAL_AUTH_DISCONNECT_PIPELINE = (
+    # Verifies that the social association can be disconnected from the current
+    # user (ensure that the user login mechanism is not compromised by this
+    # disconnection).
+    'social_core.pipeline.disconnect.allowed_to_disconnect',
+
+    # Collects the social associations to disconnect.
+    'social_core.pipeline.disconnect.get_entries',
+
+    # Revoke any access_token when possible.
+    'social_core.pipeline.disconnect.revoke_tokens',
+
+    # Removes the social associations.
+    'social_core.pipeline.disconnect.disconnect',
 )
