@@ -192,3 +192,7 @@ SOCIAL_AUTH_DISCONNECT_PIPELINE = (
     # Removes the social associations.
     'social_core.pipeline.disconnect.disconnect',
 )
+
+ALLOWED_HOSTS = ['*']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

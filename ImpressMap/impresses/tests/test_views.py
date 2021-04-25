@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from impresses.models import Impress
+from impresses.models import Impress, Profile
 
 
 class TestViews(TestCase):
@@ -12,6 +12,7 @@ class TestViews(TestCase):
         self.add_url = reverse('add')
         self.test_user = User.objects.create_user(username='test1', password='12345')
         self.test_user1 = User.objects.create_user(username='test2', password='12345')
+
         # self.impress_test = Impress.objects.create(
         #     name="qweasd",
         #     info="sadfgh"
@@ -27,7 +28,9 @@ class TestViews(TestCase):
         Impress.objects.create(
             name="qweasd",
             info="sadfgh",
-            user=self.test_user
+            profile=Profile.objects.get(user=self.test_user),
+            location='92.87558310090435,56.009795429060546',
+            address="People's, ул. Сурикова, 12, Красноярск, Красноярский край 660097, Россия",
         )
         response = self.client.get(self.home_url)
 
@@ -36,19 +39,24 @@ class TestViews(TestCase):
         Impress.objects.create(
             name="qweasd",
             info="sadfgh",
-            user=self.test_user
+            profile=Profile.objects.get(user=self.test_user1),
+            location='92.87558310090435,56.009795429060546',
+            address="People's, ул. Сурикова, 12, Красноярск, Красноярский край 660097, Россия",
         )
 
-        self.assertEqual(len(response.context['impresses']), 2)
+        self.assertEqual(len(response.context['impresses']), 1)
 
     def test_impress_list_POST(self):
         login = self.client.login(username='test1', password='12345')
         response = self.client.post(self.add_url, {
             'name': 'qweasd',
-            'info': 'sadfgh'
+            'info': 'sadfgh',
+            'location': '92.87558310090435,56.009795429060546',
+            'address': "People's, ул. Сурикова, 12, Красноярск, Красноярский край 660097, Россия",
         })
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Impress.objects.first().name, 'qweasd')
         self.assertEqual(Impress.objects.first().info, 'sadfgh')
-        self.assertEqual(Impress.objects.first().user.username, 'test1')
+        self.assertEqual(Impress.objects.first().location, (56.009795429060546, 92.87558310090435))
+        self.assertEqual(Impress.objects.first().profile.user.username, 'test1')
