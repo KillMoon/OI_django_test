@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from mapbox_location_field.models import LocationField, AddressAutoHiddenField
 
 
 class Profile(models.Model):
@@ -25,3 +26,5 @@ class Impress(models.Model):
     info = models.TextField(null=True, verbose_name="Инофрмация о воспоминании")
     date = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Время')
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="Автор", blank=True, null=True)
+    location = LocationField(map_attrs={"id": "unique_id_1", "center": [92.87172071992194, 56.00781904796429], "marker_color": "blue"})
+    address = AddressAutoHiddenField(map_id="unique_id_1")

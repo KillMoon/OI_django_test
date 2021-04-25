@@ -7,4 +7,4 @@ class ImpressForm(ModelForm):
     """Форма ввода для модели Impress"""
     class Meta:
         model = Impress
-        fields = ('name', 'info')
+        fields = ('name', 'info', 'location', 'address')

@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% load mapbox_location_field_tags %}
+{% location_field_includes %}
+{% include_jquery %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,5 +13,6 @@
         {{ form.as_p }}
     <input type="submit" value="Добавить">
     </form>
+    {{ form.media }}
 </body>
 </html>
