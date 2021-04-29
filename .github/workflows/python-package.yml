@@ -28,5 +28,5 @@ jobs:
     - name: Test with djangotest
       working-directory: ./ImpressMap
       run: |
-        run: cp .env.dev .env
+        cp .env.dev .env
         python manage.py test
