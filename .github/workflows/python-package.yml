@@ -4,8 +4,8 @@
 name: Python package
 
 on:
-  commit_comment:
-    branches: [ main ]
+  push:
+    branches: [main]
 
 jobs:
   build:
