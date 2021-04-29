@@ -37,3 +37,11 @@ class CreateImpress(CreateView):
             pass
         self.object.save()
         return super().form_valid(form)
+
+
+def conf_view(request):
+    return render(request, 'impresses/conf.html')
+
+
+def cons_view(request):
+    return render(request, 'impresses/cons.html')

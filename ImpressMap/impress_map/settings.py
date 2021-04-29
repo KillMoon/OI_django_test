@@ -44,9 +44,7 @@ INSTALLED_APPS = [
 ]
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, "static"),
-]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'impress_map.urls'
@@ -87,7 +86,7 @@ WSGI_APPLICATION = 'impress_map.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ImpressMap',
+        'NAME': 'impresses_store',
         'USER': 'postgres',
         'PASSWORD': '1',
         'HOST': 'localhost',
@@ -149,8 +148,10 @@ SOCIAL_AUTH_VK_OAUTH2_KEY = '7833535'
 SOCIAL_AUTH_VK_OAUTH2_SECRET = 'ti2eWVFRaOMqjOz3cgp8'
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1667852386735591'
-SOCIAL_AUTH_FACEBOOK_SECRET = '8bada2c81981abafe8d8c5d3c2415d04'
+SOCIAL_AUTH_FACEBOOK_KEY = '955155731957361'
+SOCIAL_AUTH_FACEBOOK_SECRET = '0e3173e33bcd56dc70b901c05b0733eb'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+# SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 
 
 SOCIAL_AUTH_VK_APP_USER_MODE = 2
@@ -174,8 +175,8 @@ SOCIAL_AUTH_PIPELINE = (
 INSTALLED_APPS += ("mapbox_location_field",)
 MAPBOX_KEY = "pk.eyJ1Ijoia2lsbG1vb25xIiwiYSI6ImNrbnZueWJjNjBvamEyd3JtODEweWxteGUifQ.wTaSGk7cIsOQlrXo75Hl4A"
 
-LOGIN_REDIRECT_URL = '/impresses'
-LOGOUT_REDIRECT_URL = '/impresses'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_DISCONNECT_PIPELINE = (
     # Verifies that the social association can be disconnected from the current
@@ -195,4 +196,10 @@ SOCIAL_AUTH_DISCONNECT_PIPELINE = (
 
 ALLOWED_HOSTS = ['*']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#
+# STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, 'static/'),
+# ]

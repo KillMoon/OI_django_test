@@ -25,6 +25,7 @@ class TestViews(TestCase):
 
     def test_impress_list_GET_auth(self):
         login = self.client.login(username='test1', password='12345')
+        profile = Profile.objects.create(user=self.test_user, avatar='')
         Impress.objects.create(
             name="qweasd",
             info="sadfgh",
@@ -35,7 +36,7 @@ class TestViews(TestCase):
         response = self.client.get(self.home_url)
 
         self.assertEqual(response.context['impresses'][0].info, 'sadfgh')
-
+        profile = Profile.objects.create(user=self.test_user1, avatar='')
         Impress.objects.create(
             name="qweasd",
             info="sadfgh",
@@ -48,6 +49,7 @@ class TestViews(TestCase):
 
     def test_impress_list_POST(self):
         login = self.client.login(username='test1', password='12345')
+        profile = Profile.objects.create(user=self.test_user, avatar='')
         response = self.client.post(self.add_url, {
             'name': 'qweasd',
             'info': 'sadfgh',

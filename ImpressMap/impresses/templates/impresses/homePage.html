@@ -11,7 +11,7 @@
     {% if user.is_authenticated %}
         <ul class="nav nav-justified">
             <li class="nav-item"><p>Привет {{user.first_name}}</p></li>
-            <li class="nav-item"><img src="{{ profile.avatar }}"/></li>
+            <li class="nav-item"><img style="width: 100px; height: 100px;" src="{{ profile.avatar }}"/></li>
             <li class="nav-item">
                 <a type="button" class="btn btn-primary" href="{% url 'logout' %}">Выйти</a>
             </li>
