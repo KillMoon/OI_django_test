@@ -44,7 +44,9 @@ INSTALLED_APPS = [
 ]
 STATIC_URL = '/static/'
 
-
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, "static"),
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,7 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'impress_map.urls'
@@ -86,11 +88,11 @@ WSGI_APPLICATION = 'impress_map.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'impresses_store',
-        'USER': 'postgres',
-        'PASSWORD': '1',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'd60b7rdq2105c7',
+        'USER': 'dkqnbefpfxuclc',
+        'PASSWORD': '6e61e8da57257754ffd8ebc7830e356a0710c9f6ddd72ffb41d05a9a19e930e1',
+        'HOST': 'ec2-54-74-156-137.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -198,8 +200,4 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#
-# STATICFILES_DIRS = [
-#         os.path.join(BASE_DIR, 'static/'),
-# ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
