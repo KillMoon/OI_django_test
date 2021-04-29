@@ -4,6 +4,10 @@ from impresses.models import Profile
 
 
 def get_avatar(backend, user=None, *args, **kwargs):
+    """
+        Фабрика для создание профиля и присваивания ему фотографии пользователя при идентификации
+        пользователя из соц сети
+    """
     if not kwargs['is_new']:
         return
     url = None

@@ -40,8 +40,10 @@ class CreateImpress(CreateView):
 
 
 def conf_view(request):
+    """Контроллер для вывода правил конфиденциальности"""
     return render(request, 'impresses/conf.html')
 
 
 def cons_view(request):
+    """Контроллер для вывода пользовательского соглашения """
     return render(request, 'impresses/cons.html')
