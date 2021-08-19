@@ -5,4 +5,4 @@ from .models import Impress, Profile
 
 admin.site.register(Impress, MapAdmin)
 admin.site.register(Profile)
-#test
+#test#
