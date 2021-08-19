@@ -62,4 +62,4 @@ class TestViews(TestCase):
         self.assertEqual(Impress.objects.first().info, 'sadfgh')
         self.assertEqual(Impress.objects.first().location, (56.009795429060546, 92.87558310090435))
         self.assertEqual(Impress.objects.first().profile.user.username, 'test1')
-        #fweoampeg
+        #fweoampegqweqwe
