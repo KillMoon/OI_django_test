@@ -20,3 +20,4 @@ class TestForms(SimpleTestCase):
 
         self.assertFalse(form.is_valid())
         self.assertEqual(len(form.errors), 3)
+        #qwe
