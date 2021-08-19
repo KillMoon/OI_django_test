@@ -15,3 +15,4 @@ class TestUrls(SimpleTestCase):
     def test_home_page_url_resolvers(self):
         url = reverse('homePage')
         self.assertEqual(resolve(url).func, home_page)
+#
