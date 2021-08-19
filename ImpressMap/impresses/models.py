@@ -30,3 +30,4 @@ class Impress(models.Model):
     location = LocationField(map_attrs={"id": "unique_id_1", "center": [92.87172071992194, 56.00781904796429],
                                         "marker_color": "blue", "readonly ": True}, verbose_name="Место")
     address = AddressAutoHiddenField(map_id="unique_id_1")
+#qwe
