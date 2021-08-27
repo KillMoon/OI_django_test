@@ -8,3 +8,4 @@ class ImpressForm(ModelForm):
     class Meta:
         model = Impress
         fields = ('name', 'info', 'location', 'address')
+asd
