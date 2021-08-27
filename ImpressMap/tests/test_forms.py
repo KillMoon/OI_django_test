@@ -19,4 +19,4 @@ class TestForms(SimpleTestCase):
         form = ImpressForm(data={'location': '92.87558310090435,56.009795429060546',})
 
         self.assertFalse(form.is_valid())
-        self.assertEqual(len(form.errors), 3)#qwe
+        self.assertEqual(len(form.errors), 3)#qweqwe
